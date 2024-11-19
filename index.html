@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click the Button Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    #gameArea {
+      margin: 20px auto;
+    }
+    #button {
+      font-size: 18px;
+      padding: 15px 30px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #button:active {
+      background-color: #0056b3;
+    }
+    #startBtn {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #startBtn:active {
+      background-color: #1e7e34;
+    }
+    #score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click the Button Game</h1>
+  <div id="gameArea">
+    <button id="button" style="display: none;">Click Me!</button>
+    <p id="score"></p>
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <script>
+    const button = document.getElementById("button");
+    const startBtn = document.getElementById("startBtn");
+    const scoreDisplay = document.getElementById("score");
+    let score = 0;
+    let timer;
+
+    // Function to start the game
+    function startGame() {
+      score = 0;
+      scoreDisplay.textContent = "";
+      button.style.display = "inline-block";
+      startBtn.style.display = "none";
+      
+      timer = setTimeout(() => {
+        endGame();
+      }, 10000); // Game runs for 10 seconds
+    }
+
+    // Function to end the game
+    function endGame() {
+      button.style.display = "none";
+      startBtn.style.display = "inline-block";
+      scoreDisplay.textContent = `Game Over! Your Score: ${score}`;
+    }
+
+    // Increment score on button click
+    button.addEventListener("click", () => {
+      score++;
+    });
+
+    // Start the game on start button click
+    startBtn.addEventListener("click", startGame);
+  </script>
+</body>
+</html>
